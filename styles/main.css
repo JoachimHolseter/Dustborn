@@ -1,26 +1,134 @@
 body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #111;
-    color: #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #ui-bar {
-    display: flex;
-    gap: 1.5rem;
-    background: #222;
-    padding: 1rem;
-    width: 100%;
-    justify-content: center;
-    font-size: 1.1rem;
-  }
-  
-  canvas {
-    margin-top: 10px;
-    border: 2px solid #333;
-    background-color: #1b1b1b;
-  }
-  
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #111;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/assets/images/t_mars_01.png");
+  background-size: contain;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+#ui-bar {
+  display: none;
+  gap: 1.5rem;
+  background: rgba(34, 34, 34, 0.8);
+  padding: 0;
+  height: 50px;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.1rem;
+  backdrop-filter: blur(4px);
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+canvas {
+  display: none;
+  position: fixed;
+  top: 50px;
+  left: 300px;
+  border: 2px solid #333;
+  background-color: transparent;
+  z-index: 1;
+}
+
+#start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#start-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 6px #000;
+}
+
+.menu-button {
+  background: #222;
+  color: #eee;
+  border: 2px solid #444;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-button:hover {
+  background: #333;
+}
+
+/* Side panels resized and padded for top bar */
+#left-panel, #right-panel {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+#left-panel {
+  left: 0;
+  width: 275px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 1rem;
+}
+#right-panel {
+  right: 0;
+  width: 275px;
+}
+.building-button {
+  background: #222;
+  border: 1px solid #444;
+  padding: 0.25rem;
+  width: 50px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: #eee;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.building-button:hover {
+  background: #333;
+}
+
+.building-button img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.25rem;
+}
+
+.building-button p {
+  margin: 0;
+  text-align: center;
+  font-size: 0.7rem;
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Canvas size control via JS */
+canvas.fullscreen {
+  width: calc(100vw - 550px);
+  height: calc(100vh - 50px);
+}
